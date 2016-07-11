@@ -1,0 +1,71 @@
+#include <condition_variable>
+#include <iostream>
+#include <mutex>
+#include <queue>
+#include <thread>
+
+#include "storage.hpp"
+
+/**/
+
+using std::condition_variable;
+using std::cout;
+using std::endl;
+using std::mutex;
+using std::queue;
+using std::unique_lock;
+
+/**/
+
+struct Storage::Opaque {
+    unsigned size_;
+    unsigned next_;
+    queue<unsigned> queue_;
+    mutex mutex_;
+    condition_variable condition_;
+
+    Opaque(int size) : size_(size), next_(0) { }
+};
+
+/**/
+
+Storage::Storage(int size) : opaque_(new Opaque(size)) { }
+
+/**/
+
+void Storage::Push(int idFactory) {
+    {
+        unique_lock<mutex> lock(opaque_->mutex_);
+        opaque_->condition_.wait(lock, [&]{
+            return opaque_->queue_.size() < opaque_->size_;
+            });
+        cout << "produce rocket " << opaque_->next_;
+        cout << " from factory " << idFactory;
+        cout << " with storage size " << opaque_->queue_.size();
+        cout << endl;
+        opaque_->queue_.push(opaque_->next_);
+        opaque_->next_++;
+    }
+    opaque_->condition_.notify_all();
+}
+
+/**/
+
+void Storage::Pull(int idBattery) {
+    {
+        unique_lock<mutex> lock(opaque_->mutex_);
+        opaque_->condition_.wait(lock, [&]{
+            return opaque_->queue_.size() > 0;
+            });
+        auto rocket = opaque_->queue_.front();
+        cout << " launch rocket " << rocket;
+        cout << " from battery " << idBattery;
+        cout << " with storage size " << opaque_->queue_.size();
+        cout << endl;
+        opaque_->queue_.pop();
+    }
+    opaque_->condition_.notify_all();
+}
+
+/**/
+
