@@ -54,6 +54,7 @@ struct Args::Opaque {
           timeLaunch_(kTimeLaunch) {
         vector<string> args;
         args.reserve(argc - 1);
+        // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
         copy(argv + 1, argv + argc, back_inserter(args));
         parse_unsigned(factories_, args);
         parse_unsigned(batteries_, args);
@@ -70,22 +71,22 @@ Args::Args(int argc, char const *const *argv)
 
 /**/
 
-unsigned Args::Batteries() { return opaque_->batteries_; }
+auto Args::Batteries() -> unsigned { return opaque_->batteries_; }
 
 /**/
 
-unsigned Args::Factories() { return opaque_->factories_; }
+auto Args::Factories() -> unsigned { return opaque_->factories_; }
 
 /**/
 
-unsigned Args::Storage() { return opaque_->storage_; }
+auto Args::Storage() -> unsigned { return opaque_->storage_; }
 
 /**/
 
-unsigned Args::TimeProduce() { return opaque_->timeProduce_; }
+auto Args::TimeProduce() -> unsigned { return opaque_->timeProduce_; }
 
 /**/
 
-unsigned Args::TimeLaunch() { return opaque_->timeLaunch_; }
+auto Args::TimeLaunch() -> unsigned { return opaque_->timeLaunch_; }
 
 /**/

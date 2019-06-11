@@ -33,8 +33,8 @@ void Run(Storage &storage, unsigned id, unsigned time) {
 
 /**/
 
-int main(int argc, char const *const *argv) {
-    cout << "Solution 201607-0 start" << endl;
+auto main(int argc, char const *const *argv) -> int {
+    cout << "Rockets start" << endl;
 
     Args args(argc, argv);
 
@@ -48,17 +48,17 @@ int main(int argc, char const *const *argv) {
     vector<thread> threads;
     threads.reserve(args.Factories() + args.Batteries());
     for (unsigned i = 0; i < args.Batteries(); i++) {
-        threads.push_back(
+        threads.emplace_back(
             thread(Run<Battery>, ref(storage), i, args.TimeLaunch()));
     }
     for (unsigned i = 0; i < args.Factories(); i++) {
-        threads.push_back(
+        threads.emplace_back(
             thread(Run<Factory>, ref(storage), i, args.TimeProduce()));
     }
-    for (unsigned i = 0; i < threads.size(); i++) {
-        threads[i].join();
+    for (auto &thread : threads) {
+        thread.join();
     }
-    cout << "Solution 201607-0 end" << endl;
+    cout << "Rockets end" << endl;
     return 0;
 }
 

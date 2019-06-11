@@ -24,16 +24,16 @@ struct Storage::Opaque {
     mutex mutex_;
     condition_variable condition_;
 
-    Opaque(int size) : size_(size), next_(0) {}
+    Opaque(unsigned size) : size_(size), next_(0) {}
 };
 
 /**/
 
-Storage::Storage(int size) : opaque_(new Opaque(size)) {}
+Storage::Storage(unsigned size) : opaque_(new Opaque(size)) {}
 
 /**/
 
-void Storage::Push(int idFactory) {
+void Storage::Push(unsigned idFactory) {
     {
         unique_lock<mutex> lock(opaque_->mutex_);
         opaque_->condition_.wait(
@@ -50,7 +50,7 @@ void Storage::Push(int idFactory) {
 
 /**/
 
-void Storage::Pull(int idBattery) {
+void Storage::Pull(unsigned idBattery) {
     {
         unique_lock<mutex> lock(opaque_->mutex_);
         opaque_->condition_.wait(lock,

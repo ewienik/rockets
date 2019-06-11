@@ -4,10 +4,10 @@
 /**/
 
 struct Storage {
-    Storage(int size);
+    Storage(unsigned size);
 
-    void Push(int idFactory);
-    void Pull(int idBattery);
+    void Push(unsigned idFactory);
+    void Pull(unsigned idBattery);
 
    private:
     struct Opaque;
