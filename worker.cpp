@@ -7,6 +7,7 @@
 
 using std::chrono::seconds;
 using std::this_thread::sleep_for;
+using std::this_thread::yield;
 
 /**/
 
@@ -30,7 +31,11 @@ Worker::~Worker() { delete opaque_; }
 void Worker::Run() {
     while (true) {
         Do();
-        sleep_for(seconds(opaque_->time_));
+        if (0 == opaque_->time_) {
+            yield();
+        } else {
+            sleep_for(seconds(opaque_->time_));
+        }
     }
 }
 
