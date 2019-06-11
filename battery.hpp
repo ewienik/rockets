@@ -3,18 +3,18 @@
 
 /**/
 
-#include "worker.hpp"
 #include "storage.hpp"
+#include "worker.hpp"
 
 /**/
 
 struct Battery : public Worker {
-    Battery(Storage & storage, unsigned id, unsigned time);
+    Battery(Storage &storage, unsigned id, unsigned time);
     virtual ~Battery();
 
-private:
+   private:
     struct Opaque;
-    Opaque * opaque_;
+    Opaque *opaque_;
 
     virtual void Do();
 };

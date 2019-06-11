@@ -9,9 +9,9 @@ struct Storage {
     void Push(int idFactory);
     void Pull(int idBattery);
 
-private:
+   private:
     struct Opaque;
-    Opaque * opaque_;
+    Opaque *opaque_;
 };
 
 /**/

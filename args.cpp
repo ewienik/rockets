@@ -1,7 +1,7 @@
+#include "args.hpp"
+
 #include <string>
 #include <vector>
-
-#include "args.hpp"
 
 /**/
 
@@ -25,7 +25,7 @@ unsigned const kTimeLaunch = 3;
 
 /**/
 
-void parse_unsigned(unsigned & value, vector<string> & args) {
+void parse_unsigned(unsigned &value, vector<string> &args) {
     if (!args.size()) {
         return;
     }
@@ -35,7 +35,7 @@ void parse_unsigned(unsigned & value, vector<string> & args) {
 
 /**/
 
-}
+}  // namespace
 
 /**/
 
@@ -46,13 +46,12 @@ struct Args::Opaque {
     unsigned timeProduce_;
     unsigned timeLaunch_;
 
-    Opaque(int argc, char const * const * argv) :
-        batteries_(kBatteries),
-        factories_(kFactories),
-        storage_(kStorage),
-        timeProduce_(kTimeProduce),
-        timeLaunch_(kTimeLaunch)
-    {
+    Opaque(int argc, char const *const *argv)
+        : batteries_(kBatteries),
+          factories_(kFactories),
+          storage_(kStorage),
+          timeProduce_(kTimeProduce),
+          timeLaunch_(kTimeLaunch) {
         vector<string> args;
         args.reserve(argc - 1);
         copy(argv + 1, argv + argc, back_inserter(args));
@@ -66,38 +65,27 @@ struct Args::Opaque {
 
 /**/
 
-Args::Args(int argc, char const * const * argv) :
-    opaque_(new Opaque(argc, argv))
-{ }
+Args::Args(int argc, char const *const *argv)
+    : opaque_(new Opaque(argc, argv)) {}
 
 /**/
 
-unsigned Args::Batteries() {
-    return opaque_->batteries_;
-}
+unsigned Args::Batteries() { return opaque_->batteries_; }
 
 /**/
 
-unsigned Args::Factories() {
-    return opaque_->factories_;
-}
+unsigned Args::Factories() { return opaque_->factories_; }
 
 /**/
 
-unsigned Args::Storage() {
-    return opaque_->storage_;
-}
+unsigned Args::Storage() { return opaque_->storage_; }
 
 /**/
 
-unsigned Args::TimeProduce() {
-    return opaque_->timeProduce_;
-}
+unsigned Args::TimeProduce() { return opaque_->timeProduce_; }
 
 /**/
 
-unsigned Args::TimeLaunch() {
-    return opaque_->timeLaunch_;
-}
+unsigned Args::TimeLaunch() { return opaque_->timeLaunch_; }
 
 /**/

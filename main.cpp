@@ -21,19 +21,19 @@ namespace {
 
 /**/
 
-template<class A>
-void Run(Storage & storage, unsigned id, unsigned time) {
+template <class A>
+void Run(Storage &storage, unsigned id, unsigned time) {
     A a(storage, id, time);
     a.Run();
 }
 
 /**/
 
-}
+}  // namespace
 
 /**/
 
-int main(int argc, char const * const * argv) {
+int main(int argc, char const *const *argv) {
     cout << "Solution 201607-0 start" << endl;
 
     Args args(argc, argv);
@@ -48,14 +48,12 @@ int main(int argc, char const * const * argv) {
     vector<thread> threads;
     threads.reserve(args.Factories() + args.Batteries());
     for (unsigned i = 0; i < args.Batteries(); i++) {
-        threads.push_back(thread(
-            Run<Battery>, ref(storage), i, args.TimeLaunch()
-        ));
+        threads.push_back(
+            thread(Run<Battery>, ref(storage), i, args.TimeLaunch()));
     }
     for (unsigned i = 0; i < args.Factories(); i++) {
-        threads.push_back(thread(
-            Run<Factory>, ref(storage), i, args.TimeProduce()
-        ));
+        threads.push_back(
+            thread(Run<Factory>, ref(storage), i, args.TimeProduce()));
     }
     for (unsigned i = 0; i < threads.size(); i++) {
         threads[i].join();

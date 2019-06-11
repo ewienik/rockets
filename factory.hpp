@@ -9,12 +9,12 @@
 /**/
 
 struct Factory : public Worker {
-    Factory(Storage & storage, unsigned id, unsigned time);
+    Factory(Storage &storage, unsigned id, unsigned time);
     virtual ~Factory();
 
-private:
+   private:
     struct Opaque;
-    Opaque * opaque_;
+    Opaque *opaque_;
 
     virtual void Do();
 };

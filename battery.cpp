@@ -3,29 +3,22 @@
 /**/
 
 struct Battery::Opaque {
-    Storage & storage_;
+    Storage &storage_;
 
-    Opaque(Storage & storage) : storage_(storage) { }
+    Opaque(Storage &storage) : storage_(storage) {}
 };
 
 /**/
 
-Battery::Battery(Storage & storage, unsigned id, unsigned time) :
-    Worker(id, time),
-    opaque_(new Opaque(storage))
-{ }
+Battery::Battery(Storage &storage, unsigned id, unsigned time)
+    : Worker(id, time), opaque_(new Opaque(storage)) {}
 
 /**/
 
-Battery::~Battery() {
-    delete opaque_;
-}
+Battery::~Battery() { delete opaque_; }
 
 /**/
 
-void Battery::Do() {
-    opaque_->storage_.Pull(id_);
-}
+void Battery::Do() { opaque_->storage_.Pull(id_); }
 
 /**/
-

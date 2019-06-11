@@ -4,7 +4,7 @@
 /**/
 
 struct Args {
-    Args(int argc, char const * const * argv);
+    Args(int argc, char const *const *argv);
 
     unsigned Factories();
     unsigned Batteries();
@@ -12,7 +12,7 @@ struct Args {
     unsigned TimeProduce();
     unsigned TimeLaunch();
 
-private:
+   private:
     struct Opaque;
     Opaque *opaque_;
 };

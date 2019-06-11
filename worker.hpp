@@ -8,14 +8,14 @@ struct Worker {
 
     void Run();
 
-protected:
+   protected:
     virtual ~Worker();
 
     unsigned id_;
 
-private:
+   private:
     struct Opaque;
-    Opaque * opaque_;
+    Opaque *opaque_;
 
     virtual void Do() = 0;
 };
@@ -23,4 +23,3 @@ private:
 /**/
 
 #endif
-
