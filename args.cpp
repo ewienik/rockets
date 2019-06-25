@@ -71,6 +71,10 @@ Args::Args(int argc, char const *const *argv)
 
 /**/
 
+Args::~Args() = default;
+
+/**/
+
 auto Args::Batteries() -> unsigned { return opaque_->batteries_; }
 
 /**/

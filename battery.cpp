@@ -15,7 +15,7 @@ Battery::Battery(Storage &storage, unsigned id, unsigned time)
 
 /**/
 
-Battery::~Battery() { delete opaque_; }
+Battery::~Battery() = default;
 
 /**/
 

@@ -3,6 +3,10 @@
 
 /**/
 
+#include <memory>
+
+/**/
+
 struct Worker {
     Worker(unsigned id, unsigned time);
 
@@ -15,7 +19,7 @@ struct Worker {
 
    private:
     struct Opaque;
-    Opaque *opaque_;
+    std::unique_ptr<Opaque> opaque_;
 
     virtual void Do() = 0;
 };

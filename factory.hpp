@@ -14,7 +14,7 @@ struct Factory : public Worker {
 
    private:
     struct Opaque;
-    Opaque *opaque_;
+    std::unique_ptr<Opaque> opaque_;
 
     virtual void Do();
 };

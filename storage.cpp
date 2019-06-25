@@ -33,6 +33,10 @@ Storage::Storage(unsigned size) : opaque_(new Opaque(size)) {}
 
 /**/
 
+Storage::~Storage() = default;
+
+/**/
+
 void Storage::Push(unsigned idFactory) {
     {
         unique_lock<mutex> lock(opaque_->mutex_);

@@ -15,7 +15,7 @@ Factory::Factory(Storage &storage, unsigned id, unsigned time)
 
 /**/
 
-Factory::~Factory() { delete opaque_; }
+Factory::~Factory() = default;
 
 /**/
 

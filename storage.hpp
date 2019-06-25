@@ -3,15 +3,20 @@
 
 /**/
 
+#include <memory>
+
+/**/
+
 struct Storage {
     Storage(unsigned size);
+    ~Storage();
 
     void Push(unsigned idFactory);
     void Pull(unsigned idBattery);
 
    private:
     struct Opaque;
-    Opaque *opaque_;
+    std::unique_ptr<Opaque> opaque_;
 };
 
 /**/

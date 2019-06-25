@@ -24,7 +24,7 @@ Worker::Worker(unsigned id, unsigned time)
 
 /**/
 
-Worker::~Worker() { delete opaque_; }
+Worker::~Worker() = default;
 
 /**/
 

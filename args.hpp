@@ -3,8 +3,13 @@
 
 /**/
 
+#include <memory>
+
+/**/
+
 struct Args {
     Args(int argc, char const *const *argv);
+    ~Args();
 
     unsigned Factories();
     unsigned Batteries();
@@ -14,7 +19,7 @@ struct Args {
 
    private:
     struct Opaque;
-    Opaque *opaque_;
+    std::unique_ptr<Opaque> opaque_;
 };
 
 /**/

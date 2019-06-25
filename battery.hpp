@@ -10,13 +10,13 @@
 
 struct Battery : public Worker {
     Battery(Storage &storage, unsigned id, unsigned time);
-    virtual ~Battery();
+    ~Battery() override;
 
    private:
     struct Opaque;
-    Opaque *opaque_;
+    std::unique_ptr<Opaque> opaque_;
 
-    virtual void Do();
+    void Do() override;
 };
 
 /**/
