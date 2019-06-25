@@ -11,11 +11,16 @@ struct Args {
     Args(int argc, char const *const *argv);
     ~Args();
 
-    unsigned Factories();
-    unsigned Batteries();
-    unsigned Storage();
-    unsigned TimeProduce();
-    unsigned TimeLaunch();
+    Args(Args const &) = delete;
+    void operator=(Args const &) = delete;
+    Args(Args &&) = delete;
+    void operator=(Args &&) = delete;
+
+    auto Factories() -> unsigned;
+    auto Batteries() -> unsigned;
+    auto Storage() -> unsigned;
+    auto TimeProduce() -> unsigned;
+    auto TimeLaunch() -> unsigned;
 
    private:
     struct Opaque;

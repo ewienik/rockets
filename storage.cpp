@@ -58,7 +58,7 @@ void Storage::Pull(unsigned idBattery) {
     {
         unique_lock<mutex> lock(opaque_->mutex_);
         opaque_->condition_.wait(lock,
-                                 [&] { return opaque_->queue_.size() > 0; });
+                                 [&] { return !opaque_->queue_.empty(); });
         auto rocket = opaque_->queue_.front();
         cout << " launch rocket " << rocket;
         cout << " from battery " << idBattery;

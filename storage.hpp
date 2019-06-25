@@ -11,6 +11,11 @@ struct Storage {
     Storage(unsigned size);
     ~Storage();
 
+    Storage(Storage const &) = delete;
+    void operator=(Storage const &) = delete;
+    Storage(Storage &&) = delete;
+    void operator=(Storage &&) = delete;
+
     void Push(unsigned idFactory);
     void Pull(unsigned idBattery);
 

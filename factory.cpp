@@ -19,6 +19,6 @@ Factory::~Factory() = default;
 
 /**/
 
-void Factory::Do() { opaque_->storage_.Push(id_); }
+void Factory::Do() { opaque_->storage_.Push(id()); }
 
 /**/

@@ -19,6 +19,6 @@ Battery::~Battery() = default;
 
 /**/
 
-void Battery::Do() { opaque_->storage_.Pull(id_); }
+void Battery::Do() { opaque_->storage_.Pull(id()); }
 
 /**/

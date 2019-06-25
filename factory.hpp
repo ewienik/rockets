@@ -10,13 +10,18 @@
 
 struct Factory : public Worker {
     Factory(Storage &storage, unsigned id, unsigned time);
-    virtual ~Factory();
+    ~Factory() override;
+
+    Factory(Factory const &) = delete;
+    void operator=(Factory const &) = delete;
+    Factory(Factory &&) = delete;
+    void operator=(Factory &&) = delete;
 
    private:
     struct Opaque;
     std::unique_ptr<Opaque> opaque_;
 
-    virtual void Do();
+    void Do() override;
 };
 
 /**/

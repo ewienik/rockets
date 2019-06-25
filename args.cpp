@@ -26,7 +26,7 @@ unsigned const kTimeLaunch = 3;
 /**/
 
 void parse_unsigned(unsigned &value, vector<string> &args) {
-    if (!args.size()) {
+    if (args.empty()) {
         return;
     }
     value = stoul(args.front());

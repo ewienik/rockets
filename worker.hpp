@@ -10,12 +10,17 @@
 struct Worker {
     Worker(unsigned id, unsigned time);
 
+    Worker(Worker const &) = delete;
+    void operator=(Worker const &) = delete;
+    Worker(Worker &&) = delete;
+    void operator=(Worker &&) = delete;
+
     void Run();
 
    protected:
     virtual ~Worker();
 
-    unsigned id_;
+    [[nodiscard]] auto id() const -> unsigned;
 
    private:
     struct Opaque;
